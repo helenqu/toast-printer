@@ -58,6 +58,7 @@ def write_to_serial(_array):
     ser = serial.Serial('dev/tty.usbserial', 9600)
     for i in range(0, 288):
         for j in range(0, 295):
-            ser.write("" + i + "," + j + "," + _array[i][j])
+            data = "" + i + "," + j + "," + _array[i][j]
+            ser.write(data.encode("utf-8"))
 
 write_to_serial(process_image("fabulous.png"))
