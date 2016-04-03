@@ -36,7 +36,7 @@ def process_image(file_path):
             if y[i][j] >= 127.5:
                 new_array[i][j] = 0
             else:
-                new_array[i][j] = 1
+                new_array[i][j] = 255
     new_image = Image.fromarray(new_array, None)
 
 
@@ -59,3 +59,5 @@ def write_to_serial(_array):
     for i in range(0, 288):
         for j in range(0, 288):
             ser.write("" + i + "," + j + "," + _array[i][j])
+
+write_to_serial(process_image("fabulous.png"))
