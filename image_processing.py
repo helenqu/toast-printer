@@ -15,8 +15,8 @@ def process_image(file_path):
     height = size[1]
 
     #For thumbnailing if image is too big
-    dimensions = (288, 288)
-    if (width >= 288 or height >= 288):
+    dimensions = (288, 295)
+    if (width >= 295 or height >= 288):
         im.thumbnail(dimensions)
 
     #Convert image to Grayscale
@@ -40,13 +40,13 @@ def process_image(file_path):
     new_image = Image.fromarray(new_array, None)
 
 
-    start_width = int(math.ceil((float(288 - width)/2)))
-    end_width =  int(math.ceil((float(288 - width)/2)) + width)
+    start_width = int(math.ceil((float(295 - width)/2)))
+    end_width =  int(math.ceil((float(295 - width)/2)) + width)
 
     start_height = int(math.ceil((float(288 - height)/2)))
     end_height =  int(math.ceil((float(288 - height)/2))) + height
     # Initialize Toast Array
-    tup = (288, 288)
+    tup = (288, 295)
     toast_array = numpy.zeros(tup)
     for i in range(start_height, end_height):
         for j in range(start_width, end_width):
@@ -57,7 +57,7 @@ def process_image(file_path):
 def write_to_serial(_array):
     ser = serial.Serial('dev/tty.usbserial', 9600)
     for i in range(0, 288):
-        for j in range(0, 288):
+        for j in range(0, 295):
             ser.write("" + i + "," + j + "," + _array[i][j])
 
 write_to_serial(process_image("fabulous.png"))
