@@ -36,7 +36,7 @@ def process_image(file_path):
             if y[i][j] >= 127.5:
                 new_array[i][j] = 0
             else:
-                new_array[i][j] = 255
+                new_array[i][j] = 1
     new_image = Image.fromarray(new_array, None)
 
 
